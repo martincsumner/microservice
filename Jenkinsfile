@@ -30,8 +30,6 @@ def fabric8Console = "${env.FABRIC8_CONSOLE ?: ''}"
 def utils = new io.fabric8.Utils()
 
 
-
-
 node {
   def envStage = utils.environmentNamespace('staging')
   def envProd = utils.environmentNamespace('production')
@@ -46,10 +44,6 @@ node {
       .withSecret('jenkins-maven-settings','/root/.m2')
       .withServiceAccount('jenkins')
       .inside {
-
-      stage 'first test'{
-        echo 'hello world again'
-      }
 
 
     stage 'Canary Release'
