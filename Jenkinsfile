@@ -35,18 +35,20 @@ def utils = new io.fabric8.Utils()
 
 
 node {
- // def envStage = utils.environmentNamespace('staging')
- // def envProd = utils.environmentNamespace('production')
+  def envStage = utils.environmentNamespace('staging')
+  def envProd = utils.environmentNamespace('production')
 
 //  git 'http://gogs.vagrant.f8/gogsadmin/mytest.git'
 
+
+
   kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
       .withPrivileged(true)
-     // .withHostPathMount('/var/run/docker.sock','/var/run/docker.sock')
-     // .withEnvVar('DOCKER_CONFIG','/home/jenkins/.docker/')
-     // .withSecret('jenkins-docker-cfg','/home/jenkins/.docker')
-     // .withSecret('jenkins-maven-settings','/root/.m2')
-     // .withServiceAccount('jenkins')
+      .withHostPathMount('/var/run/docker.sock','/var/run/docker.sock')
+      .withEnvVar('DOCKER_CONFIG','/home/jenkins/.docker/')
+      .withSecret('jenkins-docker-cfg','/home/jenkins/.docker')
+      .withSecret('jenkins-maven-settings','/root/.m2')
+      .withServiceAccount('jenkins')
       .inside {
 
       stage 'first test'{
