@@ -1,0 +1,15 @@
+---
+pipeline: "workflows/maven/CanaryReleaseStageAndApprovePromote/Jenkinsfile"
+buildName: "mytest"
+codeReview: false
+links:
+  Git: "http://gogs.vagrant.f8/gogsadmin/mytest.git"
+  Job: "http://172.30.79.9:80/job/mytest"
+  Production: "http://172.30.106.189:80/kubernetes/pods?namespace=default-production"
+  Staging: "http://172.30.106.189:80/kubernetes/pods?namespace=default-staging"
+  Testing: "http://172.30.106.189:80/kubernetes/pods?namespace=default-testing"
+environments:
+  Testing: "default-testing"
+  Staging: "default-staging"
+  Production: "default-production"
+useLocalFlow: true
