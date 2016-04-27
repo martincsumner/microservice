@@ -26,9 +26,12 @@ def canaryVersion = "${versionPrefix}.${env.BUILD_NUMBER}"
 
 def fabric8Console = "${env.FABRIC8_CONSOLE ?: ''}"
 
+*/
+
+
 def utils = new io.fabric8.Utils()
 
-*/
+
 
 
 node {
