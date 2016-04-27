@@ -2,7 +2,7 @@
 def localItestPattern = ""
 
 
-/*try {
+try {
   localItestPattern = ITEST_PATTERN
 } catch (Throwable e) {
   localItestPattern = "*KT"
@@ -26,8 +26,6 @@ def canaryVersion = "${versionPrefix}.${env.BUILD_NUMBER}"
 
 def fabric8Console = "${env.FABRIC8_CONSOLE ?: ''}"
 
-*/
-
 
 def utils = new io.fabric8.Utils()
 
@@ -38,9 +36,7 @@ node {
   def envStage = utils.environmentNamespace('staging')
   def envProd = utils.environmentNamespace('production')
 
-//  git 'http://gogs.vagrant.f8/gogsadmin/mytest.git'
-
-
+  git 'https://github.com/martincsumner/microservice.git'
 
   kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
       .withPrivileged(true)
@@ -55,7 +51,7 @@ node {
         echo 'hello world again'
       }
 
-/*
+
     stage 'Canary Release'
     mavenCanaryRelease{
       version = canaryVersion
@@ -83,7 +79,5 @@ node {
     stage 'Rolling Upgrade Production'
     rc = readFile 'target/classes/kubernetes.json'
     kubernetesApply(file: rc, environment: envProd)
-*/
-
   }  
 }
