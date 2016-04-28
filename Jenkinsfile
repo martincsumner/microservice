@@ -38,7 +38,7 @@ node {
 
   git 'https://github.com/martincsumner/microservice.git'
 
-  kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
+  kubernetes.namespace('default').pod('buildpod').withImage('fabric8/maven-builder')
       .withPrivileged(true)
       .withHostPathMount('/var/run/docker.sock','/var/run/docker.sock')
       .withEnvVar('DOCKER_CONFIG','/home/jenkins/.docker/')
