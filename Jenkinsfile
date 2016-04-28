@@ -34,6 +34,8 @@ node {
   def envStage = utils.environmentNamespace('staging')
   def envProd = utils.environmentNamespace('production')
 
+  echo 'woohoo'
+
   git 'https://github.com/martincsumner/microservice.git'
 
   kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
