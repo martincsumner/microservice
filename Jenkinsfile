@@ -38,7 +38,11 @@ node {
 
   git 'https://github.com/martincsumner/microservice.git'
 
-  kubernetes.namespace('default').pod('buildpod').withImage('fabric8/maven-builder')
+
+
+    echo 'calling the kube client code....'
+
+  kubernetes.pod('buildpod').withImage('fabric8/maven-builder')
       .withPrivileged(true)
       .withHostPathMount('/var/run/docker.sock','/var/run/docker.sock')
       .withEnvVar('DOCKER_CONFIG','/home/jenkins/.docker/')
@@ -49,6 +53,10 @@ node {
 
 
     stage 'Canary Release'
+
+    echo 'canary releasing'
+
+
     mavenCanaryRelease{
       version = canaryVersion
     }
